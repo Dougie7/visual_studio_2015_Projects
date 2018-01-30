@@ -1,0 +1,16 @@
+﻿@model List<FirstChallenge.Models.ComicBook>
+@{
+    ViewBag.Title = "Doug's Comics";
+}
+
+<h2>Doug's Comics</h2>
+
+@foreach (var comic in Model)
+{
+    <h4>@Html.ActionLink(comic.ComicTitle, "Detail", new {id=comic.ComicBookId })</h4>
+    <h5>#@comic.EpisodeNumber - @comic.EpisodeTitle</h5>
+    var heros = comic.Characters.Select(p => p.Name).ToArray();
+    var herolist = String.Join(", ", heros);
+
+    <p><strong>Featuring: </strong>@herolist</p>
+}
